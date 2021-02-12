@@ -8,6 +8,7 @@ import java.awt.font.TextAttribute;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -87,6 +88,14 @@ public class GameModel {
         Runnable r = () -> {
             try {
                 gameLoop();
+                // Save data in db after the game has ended
+                try {
+                    DatabaseHandler dbHandler = new DatabaseHandler();
+                    dbHandler.saveProgress(wpm, new Date().getTime());
+                } catch (SQLException e) {
+                    e.printStackTrace(); // TODO: Show alert
+                }
+
                 MainFrame.getInstance().setLastPanel();
             } catch (InterruptedException e) {
                 e.printStackTrace(); // TODO: handle exception

@@ -84,6 +84,15 @@ public class MenuView extends JPanel {
     }
 
     /**
+     * Adds an ActionListener to the progress button
+     *
+     * @param l
+     */
+    public void addProgressActionListener(ActionListener l) {
+        btnProgress.addActionListener(l);
+    }
+
+    /**
      * Adds an ActionListener to the options button
      *
      * @param l

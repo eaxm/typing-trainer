@@ -86,7 +86,7 @@ public class GameView extends JPanel implements PropertyChangeListener {
                 wpm = (int) evt.getNewValue();
                 break;
             default:
-                System.out.println("something went wrong");
+                System.out.println("something went wrong"); // TODO: Log message instead of printing it
                 break;
         }
 

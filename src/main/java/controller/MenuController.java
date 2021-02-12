@@ -2,10 +2,8 @@ package controller;
 
 import model.GameModel;
 import model.OptionsModel;
-import view.GameView;
-import view.MainFrame;
-import view.MenuView;
-import view.OptionsView;
+import model.ProgressModel;
+import view.*;
 
 import java.io.IOException;
 
@@ -33,6 +31,7 @@ public class MenuController {
         optionsController = new OptionsController(optionsView, optionsModel);
 
         menuView.addPlayActionListener(e -> handlePlayClick());
+        menuView.addProgressActionListener(e -> handleProgressClick());
         menuView.addOptionsActionListener(e -> handleOptionsClick());
         menuView.addExitActionListener(e -> handleExitClick());
     }
@@ -51,6 +50,15 @@ public class MenuController {
         } catch (IOException e) {
             // TODO: show error dialog that the game could not be initialized
         }
+    }
+
+    private void handleProgressClick() {
+        ProgressView progressView = new ProgressView();
+        ProgressModel progressModel = new ProgressModel();
+        ProgressController progressController = new ProgressController(progressModel, progressView);
+        mainFrame.setContentPane(progressView);
+        mainFrame.repaint();
+        mainFrame.revalidate();
     }
 
     private void handleOptionsClick() {

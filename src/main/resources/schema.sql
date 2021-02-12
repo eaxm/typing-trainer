@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS game (
+    id INTEGER PRIMARY KEY,
+    wpm INTEGER NOT NULL,
+    unixTime INTEGER
+);
