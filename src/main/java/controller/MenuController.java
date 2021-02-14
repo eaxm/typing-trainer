@@ -6,6 +6,7 @@ import model.ProgressModel;
 import view.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Handles menu interactions
@@ -42,9 +43,6 @@ public class MenuController {
             GameModel gameModel = new GameModel(optionsModel);
             GameController gameController = new GameController(gameModel, gameView);
             mainFrame.setContentPane(gameView);
-            // repaint and revalidate main frame to make the game pane visible to the user
-            mainFrame.repaint();
-            mainFrame.revalidate();
             // request focus to the game pane to get the key listener working
             gameView.requestFocus();
         } catch (IOException e) {
@@ -55,10 +53,14 @@ public class MenuController {
     private void handleProgressClick() {
         ProgressView progressView = new ProgressView();
         ProgressModel progressModel = new ProgressModel();
-        ProgressController progressController = new ProgressController(progressModel, progressView);
-        mainFrame.setContentPane(progressView);
-        mainFrame.repaint();
-        mainFrame.revalidate();
+        try{
+            ProgressController progressController = new ProgressController(progressModel, progressView);
+            mainFrame.setContentPane(progressView);
+        }catch (SQLException e){
+            e.printStackTrace();
+            // TODO: show alert
+        }
+
     }
 
     private void handleOptionsClick() {

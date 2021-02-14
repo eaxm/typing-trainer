@@ -1,6 +1,9 @@
 package model;
 
 import java.sql.*;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Provides access to the database
@@ -31,5 +34,23 @@ public class DatabaseHandler {
         ps.executeUpdate();
 
         conn.close();
+    }
+
+    public List<GameEntry> getProgress() throws SQLException {
+        Connection conn = DriverManager.getConnection(URL);
+        String progressQuerySql = "SELECT unixTime, wpm FROM game";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(progressQuerySql);
+
+        List<GameEntry> gameEntries = new LinkedList<>();
+
+        while(rs.next()){
+            long unixTime = rs.getLong("unixTime");
+            int wpm = rs.getInt("wpm");
+
+            gameEntries.add(new GameEntry(new Date(unixTime), wpm));
+        }
+
+        return gameEntries;
     }
 }

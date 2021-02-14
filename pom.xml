@@ -25,6 +25,11 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.34.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.knowm.xchart</groupId>
+            <artifactId>xchart</artifactId>
+            <version>3.8.0</version>
+        </dependency>
     </dependencies>
 
     <build>

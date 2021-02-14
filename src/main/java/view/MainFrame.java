@@ -41,6 +41,8 @@ public class MainFrame extends JFrame {
     public void setContentPane(Container contentPane) {
         lastPanel = getContentPane();
         super.setContentPane(contentPane);
+        repaint();
+        revalidate();
     }
 
     /**
