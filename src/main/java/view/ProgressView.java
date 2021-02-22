@@ -15,7 +15,7 @@ public class ProgressView extends JPanel implements PropertyChangeListener {
 
     private XChartPanel chartPanel;
     private JButton btnBack;
-    private static final Font BUTTON_FONT = new Font(Font.DIALOG, Font.PLAIN, 25);
+    private static final Font BUTTON_FONT = new Font(Font.DIALOG, Font.PLAIN, 20);
 
     /**
      * Constructor that initializes the Progress UI

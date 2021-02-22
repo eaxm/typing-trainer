@@ -139,7 +139,7 @@ public class GameModel {
                     }
                     if (!exists) {
                         double speedFactor = ThreadLocalRandom.current().nextDouble(minSpeedFactor, maxSpeedFactor);
-                        int wordX = ThreadLocalRandom.current().nextInt(0, width); // TODO: get width of word and subtract it from max width
+                        int wordX = ThreadLocalRandom.current().nextInt(0, width);
 
                         WordModel w = new WordModel(wordX, 0, chosenWord, speedFactor);
                         w.getAsWord().addAttribute(TextAttribute.FONT, font);

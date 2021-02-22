@@ -4,6 +4,7 @@ import model.WordModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.font.TextAttribute;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -46,6 +47,12 @@ public class GameView extends JPanel implements PropertyChangeListener {
         // draws all words
         synchronized (words) {
             for (WordModel w : words) {
+                // Check with current Graphics object if the x coordinate of the last character is still inside the visible area
+                Font f = (Font) w.getAsWord().getIterator().getAttribute(TextAttribute.FONT);
+                int xPosLastChar = g.getFontMetrics(f).stringWidth(w.getWord()) + w.getX();
+                if (xPosLastChar > getWidth())
+                    w.setX(w.getX() - (xPosLastChar - getWidth()));
+
                 g.drawString(w.getAsWord().getIterator(), w.getX(), w.getY());
             }
         }

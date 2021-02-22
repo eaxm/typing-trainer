@@ -41,7 +41,7 @@ public class ProgressModel {
         List<Integer> y = new LinkedList<>();
         int counter = 0;
         for (GameEntry gameEntry : gameEntries) {
-            x.add(++counter);
+            x.add(++counter); // TODO: use id of the relation instead of a counter
             y.add(gameEntry.getWpm());
         }
 

@@ -51,6 +51,7 @@ public class DatabaseHandler {
             gameEntries.add(new GameEntry(new Date(unixTime), wpm));
         }
 
+        conn.close();
         return gameEntries;
     }
 }
