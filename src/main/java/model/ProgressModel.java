@@ -36,6 +36,10 @@ public class ProgressModel {
     public void loadProgress() throws SQLException {
         DatabaseHandler databaseHandler = new DatabaseHandler();
         List<GameEntry> gameEntries = databaseHandler.getProgress();
+        if(gameEntries.isEmpty()){
+            // TODO: no progress data in db yet, notify view
+            return;
+        }
 
         List<Integer> x = new LinkedList<>();
         List<Integer> y = new LinkedList<>();
@@ -45,6 +49,7 @@ public class ProgressModel {
             y.add(gameEntry.getWpm());
         }
 
+        // doesn't accept empty data lists
         XYChart chart = QuickChart.getChart("Progress", "Time", "WPM", "Words Per Minute", x, y);
         XChartPanel chartPanel = new XChartPanel(chart);
 
